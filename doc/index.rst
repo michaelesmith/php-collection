@@ -20,7 +20,7 @@ Supported Collections:
   - Classes: ``Map``, ``ObjectMap`` (not yet implemented)
 
 
-- Sets (not yet implemented)
+- Sets
 
   - Keys: not meaningful
   - Values: anything, each value must be unique (===)
@@ -104,6 +104,29 @@ Maps
 
     // Sort
     $map->sortWith('strcmp');
+
+Sets
+~~~~
+
+.. code-block :: php
+
+    // Read Operations
+    $set = new Set(['foo', 'bar', 'baz']);
+    $set->contains('foo'); // true
+    iterator_to_array($set); // ['foo', 'bar', 'baz']
+
+    // Write Operations
+    $set = new Set();
+    $set->add('foo');
+    $set->setAll(array('bar', 'baz'));
+    $set->remove('foo');
+
+    // Set Operations
+    $a = new Set(['foo', 'bar', 'baz']);
+    $b = new Set(['foo', 'boo']);
+    $union = SetUtils::union($a, $b); // {'foo', 'bar', 'baz', 'boo'}
+    $intersect = SetUtils::intersect($a, $b); // {'foo'}
+    $a->union($b); // modifies $a
 
 License
 -------
